@@ -6,7 +6,7 @@ from .settings_common import *  # IMPORT COMMON SETTINGS
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['secret-fortress-69536.herokuapp.com']  # prod
+ALLOWED_HOSTS = ['damp-hamlet-30807.herokuapp.com']  # prod
 
 # AWS S3 bucket credentials
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME')
