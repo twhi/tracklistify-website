@@ -11,6 +11,8 @@ except ImportError:
 
 class Spotify:
     found_count = 0
+    website_url = 'https://tracklistify.herokuapp.com'
+    playlist_description = 'Playlist automatically generated at {}'.format(website_url)
 
     def __init__(self, request):
         self.request = request
@@ -108,7 +110,11 @@ class Spotify:
         return False
 
     def create_playlist(self, name):
-        return self.spotipy_session.user_playlist_create(self.get_spotify_username(), name=name, public=True)
+        description = self.playlist_description
+        return self.spotipy_session.user_playlist_create(user=self.get_spotify_username(),
+                                                         name=name,
+                                                         public=True,
+                                                         description=description)
 
     @staticmethod
     def _get_track_id_from_search_results(results, track):

@@ -3,6 +3,7 @@ from lxml import etree
 import requests
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+
 # from utils import errors
 try:
     from .utils.exceptions import WebsiteNotSupportedError, InvalidUrlError, NoTracklistError
@@ -93,7 +94,6 @@ class Tracklist:
 
         return self.tracklist
 
-
     @staticmethod
     def remove_duplicates_from_list(l):
         return list(dict.fromkeys(l))
@@ -128,7 +128,6 @@ class Tracklist:
 
 
 if __name__ == '__main__':
-
     tl = Tracklist('https://www.bbc.couoiuiouiuiouuiouiuiuiuiuiuio.uk/programmes/m0007b6z')
     t = tl.construct_tracklist()
 
