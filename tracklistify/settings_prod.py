@@ -14,6 +14,10 @@ ALLOWED_HOSTS = ['damp-hamlet-30807.herokuapp.com']  # prod
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_BUCKET_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_BUCKET_SECRET_ACCESS_KEY')
 #
+
+
+
+
 # # AWS S3 bucket settings
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # AWS_DEFAULT_ACL = None
