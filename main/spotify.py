@@ -9,6 +9,7 @@ except ImportError:
     from utils.exceptions import TracksNotFoundOnSpotifyError
 
 
+
 class Spotify:
     found_count = 0
     website_url = 'https://tracklistify.herokuapp.com'
