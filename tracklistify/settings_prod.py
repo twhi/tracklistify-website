@@ -6,6 +6,7 @@ from .settings_common import *  # IMPORT COMMON SETTINGS
 
 DEBUG = True
 
+
 ALLOWED_HOSTS = ['damp-hamlet-30807.herokuapp.com']  # prod
 
 # # AWS S3 bucket credentials
