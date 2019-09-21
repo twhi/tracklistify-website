@@ -26,11 +26,11 @@ DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('PROD_DB_NAME'), # ***REMOVED***
-        'USER': os.environ.get('PROD_DB_USER'), # ***REMOVED***
-        'PASSWORD': os.environ.get('PROD_DB_PASSWORD'), # ***REMOVED***
-        'HOST': os.environ.get('PROD_DB_HOST'), #    ***REMOVED***
-        'PORT': 5432, # 5432
+        'NAME': os.environ.get('PROD_DB_NAME'),
+        'USER': os.environ.get('PROD_DB_USER'),
+        'PASSWORD': os.environ.get('PROD_DB_PASSWORD'),
+        'HOST': os.environ.get('PROD_DB_HOST'),
+        'PORT': 5432,
     }
 }
 
