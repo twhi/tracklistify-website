@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'social_django',
+    'storages',
 ]
 
 MIDDLEWARE = [
