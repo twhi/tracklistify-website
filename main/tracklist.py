@@ -17,6 +17,7 @@ class Tracklist:
             'xpath_track': '//li[@class="track"]',
             'xpath_artist': '//span[@class="track__artist"]',
             'xpath_title': '//span[@class="track__title"]',
+            'xpath_show': '//div[contains(@class, "bio__title")]//h1/text()',
             'method': 'requests',
             'name': 'NTS Radio',
         },
@@ -24,13 +25,15 @@ class Tracklist:
             'xpath_track': '//li[contains(@class, "segments-list__item--music")]',
             'xpath_artist': '//*[@class="gamma no-margin"]/span[@class="artist"]',
             'xpath_title': '//p[@class="no-margin"]/span',
+            'xpath_show': '//div[@class="br-masthead__title"]/a/text()',
             'method': 'requests',
             'name': 'BBC iPlayer Radio',
         },
         'mixesdb': {
-            'xpath_track': '//li[contains(@class,"aff-api-done")]',
+            'xpath_track': '//*[contains(@class,"aff-api-done")]',
             'xpath_artist': '//span//@data-keywordsartist',
             'xpath_title': '//span//@data-keywordstitle',
+            'xpath_show': '//h1[@id="firstHeading"]/text()',
             'method': 'selenium',
             'name': 'MixesDB',
         }
@@ -70,6 +73,10 @@ class Tracklist:
         if len(el) == 0:
             return None
         return el
+
+    def get_show_title(self):
+        show = self.get_element_by_type(self.tree, 'show')[0]
+        return show
 
     def construct_tracklist(self):
         tracks = self.get_element_by_type(self.tree, 'track')
@@ -128,7 +135,9 @@ class Tracklist:
 
 
 if __name__ == '__main__':
-    tl = Tracklist('https://www.bbc.couoiuiouiuiouuiouiuiuiuiuiuio.uk/programmes/m0007b6z')
+    # tl = Tracklist('https://www.bbc.co.uk/programmes/m0008phw')
+    # tl = Tracklist('https://www.nts.live/shows/skinny-girl-diet/episodes/skinny-girl-diet-24th-july-2019')
+    tl = Tracklist('https://www.mixesdb.com/w/2019-07-27_-_Gilles_Peterson_-_Gilles_Peterson_Worldwide')
     t = tl.construct_tracklist()
-
+    r = tl.get_show_title()
     ender = True

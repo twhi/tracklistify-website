@@ -26,6 +26,9 @@ def _reduce_playlist(tl, tracks_to_keep):
 
 def customise(request):
     sp_form = SpotifyForm()
+
+    sp_form.fields['playlist_name'].initial = request.session['show_title']
+
     spotify = Spotify(request)
     sp_username = spotify.get_spotify_username()
     if request.method == 'POST':
@@ -123,6 +126,9 @@ def connect(request):
                     messages.error(request, "An unknown error has occured. {}".format(e), "danger")
                     return redirect(request.path_info)
 
+                show_title = tl.get_show_title()
+
+                request.session['show_title'] = show_title
                 request.session['website_name'] = tl.xpath['name']
                 request.session['tracklist'] = tracklist
                 return redirect('./customise/')

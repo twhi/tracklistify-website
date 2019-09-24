@@ -11,9 +11,9 @@ class TracklistForm(forms.Form):
 
 
 class SpotifyForm(forms.Form):
-    playlist_name = forms.CharField(widget=forms.TextInput(
+    playlist_name = forms.CharField(initial='', widget=forms.TextInput(
         attrs={
             'class': 'form-control',  # specify CSS class
-            'placeholder': 'Playlist name'  # default text
+            'placeholder': 'Playlist name',  # default text
         }
     ))
