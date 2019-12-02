@@ -4,9 +4,6 @@ PROD ENVIRONMENT SETTINGS
 
 from .settings_common import *  # IMPORT COMMON SETTINGS
 
-DEBUG = True
-
-
 ALLOWED_HOSTS = ['tracklistify.herokuapp.com']  # prod
 
 # AWS S3 bucket credentials
