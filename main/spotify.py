@@ -19,7 +19,16 @@ class Spotify:
         self.request = request
         self.user = self.get_authorised_user()
         self.spotipy_session = self.get_spotipy_session()
+        ss = self.get_all_playlists()
+        if ss:
+            for s in ss['items']:
+                print(s['name'])
+        r = 0
 
+    def get_all_playlists(self):
+        if self.user:
+            return self.spotipy_session.user_playlists(user=self.get_spotify_username())
+    
     def get_spotify_username(self):
         if self.user:
             return self.user.uid
