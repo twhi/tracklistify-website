@@ -9,8 +9,8 @@ ALLOWED_HOSTS = ['tracklistify.herokuapp.com']  # prod
 # AWS S3 bucket credentials
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME') # tracklistify
 AWS_S3_REGION_NAME = os.environ.get('AWS_BUCKET_REGION') # us-east-2
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_BUCKET_ACCESS_KEY_ID') # ***REMOVED***
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_BUCKET_SECRET_ACCESS_KEY') # ***REMOVED***
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_BUCKET_ACCESS_KEY_ID') # AKIAZI64HXQN5PY7UOJK
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_BUCKET_SECRET_ACCESS_KEY') # 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
 
 
 
