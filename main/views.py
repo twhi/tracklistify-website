@@ -10,6 +10,7 @@ from .utils.exceptions import WebsiteNotSupportedError, InvalidUrlError, NoTrack
 
 
 def complete(request):
+    
     context = {
         'found': request.session['found'],
         'total': request.session['total'],
@@ -53,7 +54,7 @@ def customise(request):
 
                     # add tracks to spotify
                     try:
-                        results = spotify.add_to_spotify(tracklist_reduced, pl)
+                        results = spotify.add_to_spotify(tracklist_reduced, pl, request.session['show_url'])
                     except TracksNotFoundOnSpotifyError:
                         messages.error(request,
                                        "Couldn't find any of tracks for this show on Spotify.", "danger")
@@ -92,6 +93,7 @@ def connect(request):
             tl_form = TracklistForm(request.POST)
             if tl_form.is_valid():
                 url = tl_form.cleaned_data['url']
+                request.session['show_url'] = url
 
                 # get tracklist from web and error catching
                 try:

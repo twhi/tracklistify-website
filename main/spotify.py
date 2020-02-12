@@ -2,12 +2,12 @@ import spotipy
 from social_django.utils import load_strategy
 import re
 from fuzzywuzzy import fuzz, process
+from .models import Usage
 
 try:
     from .utils.exceptions import TracksNotFoundOnSpotifyError
 except ImportError:
     from utils.exceptions import TracksNotFoundOnSpotifyError
-
 
 
 class Spotify:
@@ -68,7 +68,7 @@ class Spotify:
         search_string = track_artists[0] + ' ' + track_title
         return search_string
 
-    def add_to_spotify(self, tracklist, playlist_name):
+    def add_to_spotify(self, tracklist, playlist_name, show_url):
 
         # generate a list of spotify track IDs
         found_list = []
@@ -96,6 +96,14 @@ class Spotify:
                 t['found'] = True
             else:
                 t['found'] = False
+
+        u = Usage(
+            username=self.user.uid,
+            show_url=show_url,
+            tracks_found=self.found_count,
+            total_tracks=len(tracklist)
+        )
+        u.save()
 
         return {
             'found': self.found_count,
