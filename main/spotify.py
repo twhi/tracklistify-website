@@ -138,19 +138,21 @@ class Spotify:
         track_title = track['title']
         result_set = []
         for result in results['tracks']['items']:
-            result_artists = result['artists']
-            result_artists_combined = [x['name'].lower() for x in result_artists]
-            artist_result = process.extractOne(track_artists[0].lower().strip(), result_artists_combined,
+
+            # extract artist score
+            result_artists = [x['name'].lower() for x in result['artists']]
+            artist_score = process.extractOne(track_artists[0].lower().strip(), result_artists,
                                              scorer=fuzz.ratio)[1]
 
+            # extract track score
             result_title = result['name']
-            track_result =  fuzz.ratio(result_title, track_title)
+            track_score =  fuzz.ratio(result_title, track_title)
 
             result_set.append({
                 'id': result['id'], 
-                'score': artist_result + track_result,
+                'score': artist_score + track_score,
                 'title': result_title,
-                'result_artists': result_artists_combined
+                'result_artists': result_artists
                 })
 
         if result_set:
