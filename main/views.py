@@ -63,7 +63,6 @@ def customise(request):
                     # store data in session variables
                     request.session['tracklist_reduced'] = tracklist_reduced
                     request.session['found'] = results['found']
-                    print(tracklist_reduced)
                     request.session['total'] = results['total']
                     request.session['playlist_link'] = results['playlist_link']
                     request.session['complete'] = True

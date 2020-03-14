@@ -18,15 +18,15 @@
     </thead>
     <tbody>
     {% for track in tracklist %}
-    {% if track.found %}
-    <tr class="true">
+        {% if track.found %}
+            <tr class="true">
         {% else %}
-    <tr class="false">
+            <tr class="false">
         {% endif %}
-        <td>{{ track.artist|join:", " }}</td>
         <td>{{ track.title| join:" " }}</td>
+        <td>{{ track.artist|join:", " }}</td>
         <td>{{ track.found }}</td>
-    </tr>
+        </tr>
     {% endfor %}
     </tbody>
 </table>

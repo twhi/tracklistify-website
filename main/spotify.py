@@ -19,11 +19,7 @@ class Spotify:
         self.request = request
         self.user = self.get_authorised_user()
         self.spotipy_session = self.get_spotipy_session()
-        ss = self.get_all_playlists()
-        if ss:
-            for s in ss['items']:
-                print(s['name'])
-        r = 0
+        # ss = self.get_all_playlists()
 
     def get_all_playlists(self):
         if self.user:
@@ -65,6 +61,8 @@ class Spotify:
         track_title = re.sub(r'([^\s\w]|_)+', '', track_title)  # REMOVE PUNCTUATION
         track_title.strip()  # REMOVE LEADING AND TRAILING WHITESPACE
         track_artists = t['artist']
+        if len(track_artists) > 2:
+            pr = 0
         search_string = track_artists[0] + ' ' + track_title
         return search_string
 
@@ -137,13 +135,25 @@ class Spotify:
     @staticmethod
     def _get_track_id_from_search_results(results, track):
         track_artists = track['artist']
+        track_title = track['title']
+        result_set = []
         for result in results['tracks']['items']:
             result_artists = result['artists']
-            result_artists_combined = [''.join(x['name'].lower()) for x in result_artists]
-            best_result = process.extractOne(track_artists[0].lower().strip(), result_artists_combined,
-                                             scorer=fuzz.ratio)
-            score = best_result[1]
-            if score > 90:
-                track_id = [result['id']]
-                return track_id
-        return False
+            result_artists_combined = [x['name'].lower() for x in result_artists]
+            artist_result = process.extractOne(track_artists[0].lower().strip(), result_artists_combined,
+                                             scorer=fuzz.ratio)[1]
+
+            result_title = result['name']
+            track_result =  fuzz.ratio(result_title, track_title)
+            
+            result_set.append({
+                'id': result['id'], 
+                'score': artist_result + track_result,
+                'title': result_title,
+                'result_artists': result_artists_combined
+                })
+
+        if result_set:
+            return [max(result_set, key=lambda d: d['score'])['id']]
+        else:
+            return False

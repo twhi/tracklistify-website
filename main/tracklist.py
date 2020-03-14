@@ -95,7 +95,6 @@ class Tracklist:
                 continue
 
             track_dict['artist'] = self.remove_duplicates_from_list(self.extract_element_text(artist))
-            print(track_dict['artist'])
             track_dict['title'] = self.remove_duplicates_from_list(self.extract_element_text(title))
             self.tracklist.append(track_dict)
 
