@@ -145,7 +145,7 @@ class Spotify:
 
             result_title = result['name']
             track_result =  fuzz.ratio(result_title, track_title)
-            
+
             result_set.append({
                 'id': result['id'], 
                 'score': artist_result + track_result,
@@ -154,6 +154,6 @@ class Spotify:
                 })
 
         if result_set:
-            return [max(result_set, key=lambda d: d['score'])['id']]
-        else:
-            return False
+            if max(result_set, key=lambda d: d['score'])['score'] > 140:
+                return [max(result_set, key=lambda d: d['score'])['id']]
+        return False
