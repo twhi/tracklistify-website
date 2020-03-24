@@ -32,6 +32,7 @@ def customise(request):
 
     spotify = Spotify(request)
     sp_username = spotify.get_spotify_username()
+    sp_playlists = [{'name': pl['name'], 'id': pl['id']} for pl in spotify.get_user_playlists()]
     if request.method == 'POST':
 
         if 'add-to-spotify' in request.POST:
@@ -40,6 +41,7 @@ def customise(request):
 
                 sp_form = SpotifyForm(request.POST)
                 if sp_form.is_valid():
+                    
                     # get selected checkboxes
                     checkboxes = request.POST.getlist('chk')
 
@@ -75,7 +77,8 @@ def customise(request):
         'website_name': request.session['website_name'],
         'sp_form': sp_form,
         'spotify_username': sp_username,
-        'tracklist': request.session['tracklist']
+        'tracklist': request.session['tracklist'],
+        'playlists': sp_playlists,
     }
     return render(request, 'customise.html', context)
 

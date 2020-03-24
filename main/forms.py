@@ -17,3 +17,10 @@ class SpotifyForm(forms.Form):
             'placeholder': 'Playlist name',  # default text
         }
     ))
+    existing_playlists = forms.ChoiceField(choices=[], widget=forms.Select(
+        attrs={
+            'id': 'opt-param',
+            'class': 'form-control',
+
+        }
+    ))

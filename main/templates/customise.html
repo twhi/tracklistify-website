@@ -46,6 +46,12 @@
         will be added to this playlist.</p>
     <div class="form-group">
         {{ sp_form.playlist_name }}
+
+        <select class="form-control" name="item_id">
+            {% for pl in playlists %}
+                <option value="{{ pl.id }}">{{ pl.name }}</option>
+            {% endfor %}
+        </select>
     </div>
 
     {% if spotify_username %}
