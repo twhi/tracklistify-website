@@ -42,16 +42,26 @@
     </table>
 
     <hr>
-    <p>Choose a name for your playlist. If you choose a playlist name that already exists on your account, the tracks
-        will be added to this playlist.</p>
+    <p>Choose a name for your playlist.</p>
     <div class="form-group">
-        {{ sp_form.playlist_name }}
+        <div class="row">
 
-        <select class="form-control" name="item_id">
-            {% for pl in playlists %}
-                <option value="{{ pl.id }}">{{ pl.name }}</option>
-            {% endfor %}
-        </select>
+            <div class="col-l-4 col-md-6">
+                <p>Add tracks to existing playlist:</p>
+                <select class="form-control" name="playlist_name">
+                    <option value="" disabled selected>Select playlist...</option>
+                    {% for pl in playlists %}
+                        <option value="{{ pl.name }}">{{ pl.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-l-4 col-md-6">
+                <p>Custom Name:</p>
+                {{ sp_form.playlist_name }}
+            </div>
+
+        </div>
     </div>
 
     {% if spotify_username %}

@@ -52,7 +52,9 @@ def customise(request):
                     tracklist_reduced = _reduce_playlist(tracklist, checkboxes)
 
                     # get playlist name from form input
-                    pl = sp_form.cleaned_data['playlist_name']
+                    pl = request.POST.get('playlist_name')
+                    if not pl:
+                        pl = sp_form.cleaned_data['playlist_name']
 
                     # add tracks to spotify
                     try:
